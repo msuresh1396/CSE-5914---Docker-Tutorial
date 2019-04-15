@@ -91,6 +91,114 @@ Wait, image? Container? What's the difference? I'm glad you asked. A Docker **co
 
 Onto the `Dockerfile`.
 
+### Creating the `Dockerfile`
+
+1. Start by creating a new, empty directory anywhere on your local machine and change into it:
+
+    ```
+    mkdir docker-test && cd docker-test
+    ```
+    
+2. Within your new directory, create a file called `Dockerfile` and copy-paste the following content into it:
+
+    ```
+    # Use an official Python runtime as a parent image
+    FROM python:2.7-slim
+
+    # Set the working directory to /app
+    WORKDIR /app
+
+    # Copy the current directory contents into the container at /app
+    COPY . /app
+
+    # Install any needed packages specified in requirements.txt
+    RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+    # Make port 80 available to the world outside this container
+    EXPOSE 80
+
+    # Define environment variable
+    ENV NAME world
+
+    # Run app.py when the container launches
+    CMD ["python", "app.py"]
+    ```
+    
+3. Now, we need to create two more files in the same folder, namely `requirements.txt` and `app.py`:
+
+    **requirements.txt**:
+    ```
+    Flask
+    ```
+    
+    **app.py**:
+    ```
+    import os
+    import socket
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    @app.route("/")
+    def hello():
+        html = "<h3>Hello, {name}!</h3>" \
+               "<b>Hostname:</b> {hostname}<br/>"
+        return html.format(name=os.getenv("NAME", "world"), hostname=socket.gethostname())
+
+    if __name__ == "__main__":
+        app.run(host='0.0.0.0', port=80)
+    ```
+    
+That's it! Now we are ready to build the app.
+
+### Building the App
+
+1. In the directory with the `Dockerfile` file, `requirements.txt` file, and `app.py` file, run the build command (we name it using the `tag` command):
+
+    ```
+    docker build --tag=testinghello .
+    ```
+    
+    Remember how I talked about images vs containers?
+    
+    Well, if you run `docker image ls`, you will see the image we just created.
+    
+### Run the App
+
+1. Run the app, mapping your machines port 8080 to the container's published port 80:
+
+    ```
+    docker run -p 8080:80 testinghello
+    ```
+    
+    Now, if you go to `http://localhost:8080`, you should see the content served up on a webpage!
+
+    Hit `CTRL+C` in your terminal to quit.
+    
+2. Run the app in the background in a detached mode:
+
+    ```
+    docker run -d -p 8080:80 testinghello
+    ```
+    
+3. You can view the container by running:
+
+    ```
+    docker container ls
+    
+    Output:
+    CONTAINER ID        IMAGE               COMMAND             CREATED
+    1fa4ab2cf395        testinghello       "python app.py"     28 seconds ago
+    ```
+    
+4. You can stop the container by running:
+
+    ```
+    docker container stop 1fa4ab2cf395
+    ```
+    
+## Step 2.1: Getting Other People's Docker Images
+
 ## References
 
 1. https://opensource.com/resources/what-docker
