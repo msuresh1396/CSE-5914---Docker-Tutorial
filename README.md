@@ -165,7 +165,7 @@ That's it! Now we are ready to build the app.
     
 ### Run the App
 
-1. Run the app, mapping your machines port 8080 to the container's published port 80:
+1. Run the app, mapping your machine's port 8080 to the container's published port 80:
 
     ```
     docker run -p 8080:80 testinghello
@@ -199,7 +199,63 @@ That's it! Now we are ready to build the app.
     
 ## Step 2.1: Getting Other People's Docker Images
 
+Let's say a friend told you about Docker and they told you to pull their awesome nginx web server image from Dockerhub.
+
+What does that even mean? Well, the Docker community has a hub sort of like Github. People upload images to Dockerhub so that their friends or other people can pull them and easily run them in a container. It saves you from having to create a Docker image from scratch when somebody has already gone through the pain of doing it!
+
+So, how do we get started?
+
+1. First, we'll test this with the [nginx web server](https://nginx.org/en/):
+
+    ```
+    docker pull nginx
+    ```
+    
+    If you run `docker images`, you will see that `nginx` is also there.
+    
+2. Let's run our nginx Docker container:
+
+    ```
+    docker run --name docker-nginx -p 8080:80 -d nginx
+    ```
+    
+    * We create a new container with `run`.
+    * And name it `docker-nginx` using `--name`.
+    * We map local port 8080 to the container port 80 with `-p`.
+    * We run the container in detached mode using `-d`.
+    * And `nginx` is the name of the image we pulled from Dockerhub (note: if the image wasn't downloaded, Docker will do this automatically).
+
+3. Say you want to access the nginx container to do a bit of configuration. That is possible by running the following command:
+
+    ```
+    docker exec -it <container-id> bash
+    ```
+    
+    where `<container-id>` is the ID of the running container.
+    
+    You should now be at the commandline within your container. You can now make configuration changes via the shell.
+    
+    Once you are done, simply run `exit`.
+
+## Step 3: Docker Compose
+
+TODO
+
+## Step 4: Useful Commands
+
+This step isn't really a step but more of a reference. Here we list a bunch of useful Docker commands:
+
+* `docker start <image-name>`: start the docker image with `<image-name>`
+* `docker stop <image-name>`: stop the docker image with `<image-name>`
+* `docker rm <image-name>`: delete a docker image with `<image-name>`
+* `docker ps`: list running docker containers (use `-a` flag to list all)
+* `docker images`: list docker images
+* `docker pull <image-name>`: download docker image from Dockerhub
+
 ## References
 
-1. https://opensource.com/resources/what-docker
-2. https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
+1. [https://opensource.com/resources/what-docker](https://opensource.com/resources/what-docker)
+2. [https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository)
+3. [https://docs.docker.com](https://docs.docker.com)
+4. [https://www.linode.com/docs/applications/containers/how-to-install-docker-and-pull-images-for-container-deployment/](https://www.linode.com/docs/applications/containers/how-to-install-docker-and-pull-images-for-container-deployment/)
+5. [https://www.techrepublic.com/article/how-to-run-nginx-as-a-docker-container/](https://www.techrepublic.com/article/how-to-run-nginx-as-a-docker-container/)
