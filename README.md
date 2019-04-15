@@ -271,7 +271,48 @@ Docker Compose is "a tool for defining and running multi-container Docker applic
 
 Using Docker Compose, we will cover how to setup a Docker container for Wordpress and one for MySQL. As a side note, you can also create a `Dockerfile` to build the Docker image. That is only necessary if you want to configure your environment a certain way.
 
-1. TODO
+1. Create a `docker-compose.yml` file with the following content:
+
+    ```
+    version: '3'
+
+    services:
+       db:
+         image: mysql:5.7
+         volumes:
+           - db_data:/var/lib/mysql
+         restart: always
+         environment:
+           MYSQL_ROOT_PASSWORD: somewordpress
+           MYSQL_DATABASE: wordpress
+           MYSQL_USER: wordpress
+           MYSQL_PASSWORD: wordpress
+
+       wordpress:
+         depends_on:
+           - db
+         image: wordpress:latest
+         ports:
+           - "8080:80"
+         restart: always
+         environment:
+           WORDPRESS_DB_HOST: db:3306
+           WORDPRESS_DB_USER: wordpress
+           WORDPRESS_DB_PASSWORD: wordpress
+    volumes:
+        db_data:
+    ```
+    
+2. After saving the file, run the following command from the same directory:
+
+    ```
+    docker-compose up -d
+    ```
+    
+    This will build and run the `db` and `wordpress` containers in the detached mode.
+    
+3. Navigate to `http://localhost:8080/wordpress` to see the new installation.
+4. Stop and remove the containers by running `docker-compose down`.
 
 ### `Dockerfile` vs `docker-compose.yml`
 
