@@ -236,10 +236,46 @@ So, how do we get started?
     You should now be at the commandline within your container. You can now make configuration changes via the shell.
     
     Once you are done, simply run `exit`.
+    
+4. Just like before, you can navigate to `http://localhost:8080` to see that the nginx web server is running.
 
 ## Step 3: Docker Compose
 
-TODO
+The last part of this Docker Quickstart Tutorial will cover Docker Compose.
+
+### What is Docker Compose?
+
+Docker Compose is "a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration."
+
+### Installing Docker Compose
+
+1. Download the current stable release of Docker Compose:
+
+    ```
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    ```
+    
+2. Apply executable permissions to the binary:
+
+    ```
+    sudo chmod +x /usr/local/bin/docker-compose
+    ```
+    
+3. Test the installation:
+
+    ```
+    docker-compose --version
+    ```
+    
+### Creating Wordpress and MySQL Containers
+
+Using Docker Compose, we will cover how to setup a Docker container for Wordpress and one for MySQL. As a side note, you can also create a `Dockerfile` to build the Docker image. That is only necessary if you want to configure your environment a certain way.
+
+1. TODO
+
+### `Dockerfile` vs `docker-compose.yml`
+
+What is the difference between these two files? The `Dockerfile` configures and sets up the environment of the Docker container. The `docker-compose.yml` file is what defines and configures the services running on the Docker container.
 
 ## Step 4: Useful Commands
 
@@ -259,3 +295,5 @@ This step isn't really a step but more of a reference. Here we list a bunch of u
 3. [https://docs.docker.com](https://docs.docker.com)
 4. [https://www.linode.com/docs/applications/containers/how-to-install-docker-and-pull-images-for-container-deployment/](https://www.linode.com/docs/applications/containers/how-to-install-docker-and-pull-images-for-container-deployment/)
 5. [https://www.techrepublic.com/article/how-to-run-nginx-as-a-docker-container/](https://www.techrepublic.com/article/how-to-run-nginx-as-a-docker-container/)
+6. [https://docs.docker.com/compose/overview/](https://docs.docker.com/compose/overview/)
+7. [https://www.linode.com/docs/applications/containers/how-to-use-docker-compose/](https://www.linode.com/docs/applications/containers/how-to-use-docker-compose/)
