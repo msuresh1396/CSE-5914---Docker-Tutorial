@@ -329,6 +329,16 @@ This step isn't really a step but more of a reference. Here we list a bunch of u
 * `docker images`: list docker images
 * `docker pull <image-name>`: download docker image from Dockerhub
 
+## Step 5: Other Docker Terms
+
+Here are some useful Docker terms found in this tutorial as well as around the Docker community!
+
+* 'Docker for Windows/Linux/Mac': Docker can be run on multiple different operating systems
+* 'Docker Engine': Use to build Docker images and creating the Docker containers
+* 'Docker Hub': Your one stop shop for all Docker images
+* 'Docker Compose': This is used when you want to define applications that are using multiple different containers
+* 'Official Images': These are images that are the official image of whatever product it is, this helps avoid scams and malicious images
+
 ## References
 
 1. [https://opensource.com/resources/what-docker](https://opensource.com/resources/what-docker)
@@ -338,3 +348,4 @@ This step isn't really a step but more of a reference. Here we list a bunch of u
 5. [https://www.techrepublic.com/article/how-to-run-nginx-as-a-docker-container/](https://www.techrepublic.com/article/how-to-run-nginx-as-a-docker-container/)
 6. [https://docs.docker.com/compose/overview/](https://docs.docker.com/compose/overview/)
 7. [https://www.linode.com/docs/applications/containers/how-to-use-docker-compose/](https://www.linode.com/docs/applications/containers/how-to-use-docker-compose/)
+8. [https://www.tutorialspoint.com/docker/](https://www.tutorialspoint.com/docker/)
