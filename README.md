@@ -347,6 +347,7 @@ This is the traditional architecture a lot of companies use for virtualization.
 
 Docker removes a layer to make the architecture a little simplier. 
 <img alt="docker_architecture" src="https://www.tutorialspoint.com/docker/images/various_layers.jpg" width="400">
+
 The server and host OS layers do not change. The docker engine removes the need for virtual machiens. It also allows the applications to run directly on the docker engine as docker containers. This can cut down on the need for the extra hardware that is needed to run the Guest OS layer in the tradititonal setup. 
 
 ## References
