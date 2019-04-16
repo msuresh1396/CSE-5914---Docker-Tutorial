@@ -329,7 +329,7 @@ This step isn't really a step but more of a reference. Here we list a bunch of u
 * `docker images`: list docker images
 * `docker pull <image-name>`: download docker image from Dockerhub
 
-## Step 5: Other Docker Terms
+## Step 5: Docker Terms
 
 Here are some useful Docker terms found in this tutorial as well as around the Docker community!
 
@@ -337,7 +337,17 @@ Here are some useful Docker terms found in this tutorial as well as around the D
 * 'Docker Engine': Use to build Docker images and creating the Docker containers
 * 'Docker Hub': Your one stop shop for all Docker images
 * 'Docker Compose': This is used when you want to define applications that are using multiple different containers
+* 'Docker file': This is a file with instructions for how you want to run your docker files (intermediate level)
 * 'Official Images': These are images that are the official image of whatever product it is, this helps avoid scams and malicious images
+
+## Step 6: Docker Architecture
+
+This is the traditional architecture a lot of companies use for virtualization. 
+<img alt="traditional_architecture" src="https://www.tutorialspoint.com/docker/images/virtualization.jpg" width="400">
+
+Docker removes a layer to make the architecture a little simplier. 
+<img alt="docker_architecture" src="https://www.tutorialspoint.com/docker/images/various_layers.jpg" width="400">
+The server and host OS layers do not change. The docker engine removes the need for virtual machiens. It also allows the applications to run directly on the docker engine as docker containers. This can cut down on the need for the extra hardware that is needed to run the Guest OS layer in the tradititonal setup. 
 
 ## References
 
